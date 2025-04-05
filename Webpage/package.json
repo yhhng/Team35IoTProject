@@ -1,0 +1,25 @@
+{
+  "name": "iotgroup35project",
+  "version": "1.0.0",
+  "description": "This IoT-based project focuses on real-time fall detection and location monitoring for elderly care. The system utilizes various sensors to detect motion and falls within specific areas of a home, such as bedrooms and living rooms. When a fall is detected, the system triggers an automatic notification via SMS to a designated caretaker using the Twilio API. The system's backend is integrated with Firebase, which stores and updates the current location of the individual in real-time. A web-based floor plan dynamically highlights the active room based on location changes, providing caretakers with real-time visibility of the individual’s whereabouts. The system aims to enhance safety and improve response times in emergency situations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yhhng/iotgrp35webpage.git"
+  },
+  "author": "group35",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yhhng/iotgrp35webpage/issues"
+  },
+  "homepage": "https://github.com/yhhng/iotgrp35webpage#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "firebase-admin": "^13.2.0",
+    "twilio": "^5.5.1",
+    "ws": "^8.18.1"
+  }
+}

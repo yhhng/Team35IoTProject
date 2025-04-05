@@ -1,0 +1,59 @@
+In this version updates:
+- Fixed MQTT TLS/PSK authentication (MQTT protocol)
+
+Security for Bluetooth (Device Whitelisting):
+This function tells the provisioner which unprovisioned devices it should “pay attention to” based on a portion of their unique identifiers:
+```
+uint8_t match[2] = {0x32, 0x10};
+err = esp_ble_mesh_provisioner_set_dev_uuid_match(match, sizeof(match), 0x0, false);
+if (err != ESP_OK)
+{
+    ESP_LOGE(TAG, "Failed to set matching device uuid");
+    return err;
+}
+```
+
+Explanation:
+
+- `uint8_t match[2] = {0x32, 0x10};`  
+  This array holds the bytes that the provisioner will look for in an unprovisioned node’s device UUID.  
+  - Think of it as a “fingerprint” or a pattern that must appear at the beginning of the device’s UUID.
+  
+- `esp_ble_mesh_provisioner_set_dev_uuid_match(match, sizeof(match), 0x0, false);`**  
+  This function sets the filter for the provisioner. Its parameters are:
+  - `match`: The pattern you want to match (in this case, the two bytes `0x32` and `0x10`).
+  - `sizeof(match)`: The length of the pattern (which is 2 bytes here).
+  - `0x0`: The offset in the device UUID where the matching should start. Here it starts at the very beginning.
+  - `false`: This parameter indicates whether you want to invert the match (set to `false` means “do not invert”).  
+
+What It Does:
+- Filtering Unprovisioned Devices:
+  When an unprovisioned node (a sensor server, for example) powers on, it broadcasts its device UUID. The provisioner listens for these advertisements.
+- Matching the Pattern:
+  The provisioner checks each broadcasted UUID. If the first two bytes of the UUID match `{0x32, 0x10}` (your defined fingerprint), then that device is considered a candidate for provisioning.
+- Ignoring Others:
+  If a device’s UUID does not begin with these two bytes, the provisioner ignores it.
+
+In Simple Terms:
+Imagine you’re hosting a party (the mesh network), and you only want guests (unprovisioned nodes) wearing a specific badge (the two-byte pattern in the UUID) to enter. 
+The provisioner looks at each guest’s badge as they approach. If the badge matches your expected pattern, you invite them in (provision them into the network). If not, you let them pass by.
+This filtering mechanism is built into the Bluetooth Mesh protocol to help you control which devices become part of your secure network.
+
+Security for Bluetooth (AES-CCM Encrpytion):
+All data exchanged between nodes in a Bluetooth Mesh network is encrypted. This is built into the mesh protocol, so every message—whether it’s sent to a single node (unicast) or to a group of nodes (broadcast)—is automatically secured.
+
+How It Works:
+1. Key Exchange During Provisioning:
+   When a device is provisioned (added) to the mesh network, it receives several keys:  
+   - Network Key: Used to encrypt messages at the network level.  
+   - Application Key: Can be used to encrypt the payload of messages specific to an application.
+
+2. AES-CCM Encryption:
+   The Bluetooth Mesh standard uses the AES-CCM (Advanced Encryption Standard with Counter with CBC-MAC) algorithm to encrypt and authenticate all messages. This algorithm not only scrambles the data so that it’s unreadable to outsiders but also adds a code (MAC) that ensures the message wasn’t altered in transit.
+
+3. Automatic Handling:
+   As a developer, you don’t need to manually implement encryption—the mesh stack takes care of encrypting outgoing messages and decrypting incoming ones using the keys exchanged during provisioning.
+
+In Simple Terms:
+Imagine every message in your mesh network is sealed in a secure envelope (encrypted) when sent, and only devices with the proper key (obtained during provisioning) can open and read the envelope. 
+This ensures that all data shared among nodes remains private and tamper-proof.

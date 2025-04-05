@@ -1,0 +1,21 @@
+{
+    "C_Cpp.intelliSenseEngine": "default",
+    "idf.espIdfPathWin": "d:\\ESP-IDF_Container\\v5.4\\esp-idf",
+    "idf.toolsPathWin": "d:\\ESP-IDF_Tools",
+    "idf.pythonInstallPath": "d:\\ESP-IDF_Tools\\tools\\idf-python\\3.11.2\\python.exe",
+    "idf.customExtraVars": {
+        "IDF_TARGET": "esp32c3"
+    },
+    "idf.openOcdConfigs": [
+        "board/esp32c3-builtin.cfg"
+    ],
+    "idf.portWin": "COM13",
+    "idf.flashType": "UART",
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "ble_mesh_example_init.h": "c",
+        "esp_ble_mesh_common_api.h": "c",
+        "esp_ble_mesh_config_model_api.h": "c",
+        "esp_ble_mesh_networking_api.h": "c"
+    }
+}

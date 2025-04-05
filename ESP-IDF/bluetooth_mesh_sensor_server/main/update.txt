@@ -1,0 +1,26 @@
+In this version update:
+- Added debounce logic (5 secs) to home button to prevent spamming
+
+Security Bluetooth Mesh(Device Whitelisting):
+```
+static uint8_t dev_uuid[ESP_BLE_MESH_OCTET16_LEN] = {0x32, 0x10};
+```
+
+you are explicitly setting the first two bytes to 0x32 and 0x10. The remaining 14 bytes are automatically set to 0.
+
+What It Means:
+-Hexadecimal Representation:
+  0x32 and 0x10 are hexadecimal numbers. In decimal, 0x32 is 50 and 0x10 is 16.
+  
+- Device UUID Composition:
+  The complete device UUID is 16 bytes long. Here it starts with the two bytes 0x32, 0x10, and the rest (14 bytes) are zero. This can be visualized as:
+  ```
+  0x32, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+  ```
+
+- Role in Provisioning:  
+  The UUID is used during the provisioning process. The provisioner (the sensor client) can filter unprovisioned nodes based on their UUID. If you set this on your sensor-server, then its unique identifier will start with 0x32, 0x10. The provisioner can use a matching rule (like checking for the prefix 0x32, 0x10) to decide whether to add this node to the network.
+
+In Simple Terms:
+Think of the device UUID as a 16‑character "ID card" for your sensor. By specifying `{0x32, 0x10}`, you're giving the ID card a specific beginning ("32 10") while leaving the rest of the ID as zeros. This "ID card" helps the provisioner recognize which devices to add to the network.
