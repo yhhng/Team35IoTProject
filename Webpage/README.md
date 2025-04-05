@@ -15,8 +15,8 @@ Before running the project, ensure you have the following installed:
 
 1. **Clone the repository** (or download the project files):
     ```bash
-    git clone https://github.com/yhhng/iotgrp35webpage.git
-    cd iotgrp35webpage
+    git clone https://github.com/yhhng/Team35IoTProject.git
+    cd Team35IoTProject
     ```
 
 2.  **Install dependencies:**
