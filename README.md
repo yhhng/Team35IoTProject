@@ -49,13 +49,19 @@ The system consists of:
    cd Webpage
    npm install
    ```
+2. MQTT Broker:
+   - Use the MQTT Broker folder provided in the repository
+   - Credits to:
+   ```bash
+   http://www.steves-internet-guide.com/download/6-bit-mosquitto-v2/
+   ```
 
-2. Arduino Sensors:
+3. Arduino Sensors:
    - Open each sensor project in the Arduino IDE
    - Install required libraries
    - Upload to respective Arduino boards
 
-3. ESP-IDF Mesh Network:
+4. ESP-IDF Mesh Network:
    - Set up ESP-IDF development environment
    - Select port, build and flash the server and client implementations
 
@@ -65,9 +71,20 @@ The system consists of:
    cd Webpage
    node backend.js
    ```
+2. Start the MQTT Broker:
+   ``` bash
+   //To start MQTT Broker:
+   mosquitto -c mosquitto.conf -v
 
-2. Access the web interface through your browser
-3. Monitor sensor data and alerts in real-time
+   //To publish to a topic:
+   mosquitto_pub -h "Replace to your IP Address" -p 8883 -u "yuheng" -P "123456" --psk-identity "hint" --psk "BAD123" -t 'test/topic' -m 'hello world'
+   
+   //To subscribe to all topics:
+   mosquitto_sub -h "Replace to your IP Address" -p 8883 -u "yuheng" -P "123456" --psk-identity "hint" --psk "BAD123" -t "#"
+   ```
+
+4. Access the web interface through your browser
+5. Monitor sensor data and alerts in real-time
 
 ## P.S.
 Due to security reason, Google/Github does not allow to upload the secret key to our firebase aka service-account-file.json. You may drop any of us an email should you require the key file to test run the project.
