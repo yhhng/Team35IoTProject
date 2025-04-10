@@ -2,7 +2,7 @@ To start MQTT Broker:
 mosquitto -c mosquitto.conf -v
 
 To publish:
-mosquitto_sub -h 192.168.1.19 -p 8883 -u "yuheng" -P "123456" --psk-identity "hint" --psk "BAD123" -t home/sensor
+mosquitto_pub -h "Replace to your IP Address" -p 8883 -u "yuheng" -P "123456" --psk-identity "hint" --psk "BAD123" -t 'test/topic' -m 'hello world'
 
 To subscribe to all topics:
 mosquitto_sub -h 192.168.1.19 -p 8883 -u "yuheng" -P "123456" --psk-identity "hint" --psk "BAD123" -t "#"
