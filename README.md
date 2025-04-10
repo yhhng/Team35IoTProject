@@ -26,6 +26,9 @@ Contains various sensor implementations for different rooms:
 - `KitchenIRSensor/`: Infrared sensor for kitchen monitoring
 - `BedroomToiletFallDetector/`: Fall detection system for bedroom toilet area
 
+### 4. MQTT Broker
+Contains the modified version of MQTT broker which uses TLS/PSK Auth and Username/Password Auth. CA Cert Auth was tested but not in use.
+
 ## System Architecture
 
 The system consists of:
