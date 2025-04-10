@@ -71,7 +71,7 @@ The system consists of:
    cd Webpage
    node backend.js
    ```
-2. Start the MQTT Broker:
+2. Start the MQTT Broker using Command Prompt:
    ``` bash
    //To start MQTT Broker:
    mosquitto -c mosquitto.conf -v
