@@ -1,0 +1,7 @@
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+basicConstraints       = CA:TRUE
+keyUsage               = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement
+extendedKeyUsage       = serverAuth
+subjectAltName         = IP:192.168.1.10
+issuerAltName          = issuer:copy
