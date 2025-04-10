@@ -36,11 +36,11 @@ automatically. If not, it can be started with a basic configuration:
 
 Then use `mosquitto_sub` to subscribe to a topic:
 
-    mosquitto_sub -t 'test/topic' -v
+    mosquitto_sub -h "Replace to your IP Address" -p 8883 -u "yuheng" -P "123456" --psk-identity "hint" --psk "BAD123" -t "#"
 
 And to publish a message:
 
-    mosquitto_pub -t 'test/topic' -m 'hello world'
+    mosquitto_pub -h "Replace to your IP Address" -p 8883 -u "yuheng" -P "123456" --psk-identity "hint" --psk "BAD123" -t 'test/topic' -m 'hello world'
 
 ## Documentation
 
